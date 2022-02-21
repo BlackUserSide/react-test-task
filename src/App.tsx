@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { fireBaseApi } from "./firebase";
+import { Route, Routes } from "react-router-dom";
+import { MainLogin } from "./components/MainLogin";
+import "./main.sass";
+import { Cabinet } from "./components/Cabinet";
+export const App: React.FC = () => {
+  React.useEffect(() => {
+    console.log(fireBaseApi.name);
+  }, []);
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-app-wrapper">
+      <Routes>
+        <Route path="/" element={<MainLogin />} />
+        <Route path="/cabinet" element={<Cabinet />} />
+      </Routes>
     </div>
   );
-}
-
-export default App;
+};
